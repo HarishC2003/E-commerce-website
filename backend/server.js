@@ -21,18 +21,9 @@ app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/wishlist", require("./routes/wishlistRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 
-if (process.env.NODE_ENV === 'production') {
-  const frontendDistPath = path.join(__dirname, '../frontend/dist');
-  app.use(express.static(frontendDistPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(frontendDistPath, 'index.html'));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("Focus IT E-Commerce Backend is Running!");
-  });
-}
+app.get("/", (req, res) => {
+  res.send("Focus IT E-Commerce Backend is Running!");
+});
 
 app.post("/api/test", (req, res) => {
     console.log(req.body);
@@ -42,16 +33,15 @@ app.post("/api/test", (req, res) => {
      });
 });
 
-// Connect to DB and start server
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Failed to connect to DB, server not started", error);
-  }
-};
+// Connect to database
+connectDB();
 
-startServer();
+// Only listen locally, Vercel will handle the requests via the exported app
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
