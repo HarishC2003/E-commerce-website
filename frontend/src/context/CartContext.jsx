@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components, react-hooks/set-state-in-effect */
 import { createContext, useState, useEffect, useContext } from 'react';
 import api from '../services/api';
 import { AuthContext } from './AuthContext';
@@ -10,14 +11,6 @@ export const CartProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const { showToast } = useToast();
 
-  useEffect(() => {
-    if (user) {
-      fetchCart();
-    } else {
-      setCart({ items: [] });
-    }
-  }, [user]);
-
   const fetchCart = async () => {
     try {
       const res = await api.get('/cart');
@@ -26,6 +19,14 @@ export const CartProvider = ({ children }) => {
       console.error("Error fetching cart", error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      fetchCart();
+    } else {
+      setTimeout(() => setCart({ items: [] }), 0);
+    }
+  }, [user]);
 
   const addToCart = async (productId, quantity = 1) => {
     if (!user) {

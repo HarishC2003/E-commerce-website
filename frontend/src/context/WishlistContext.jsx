@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components, react-hooks/set-state-in-effect */
 import { createContext, useState, useEffect, useContext } from 'react';
 import api from '../services/api';
 import { AuthContext } from './AuthContext';
@@ -10,14 +11,6 @@ export const WishlistProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const { showToast } = useToast();
 
-  useEffect(() => {
-    if (user) {
-      fetchWishlist();
-    } else {
-      setWishlist({ products: [] });
-    }
-  }, [user]);
-
   const fetchWishlist = async () => {
     try {
       const res = await api.get('/wishlist');
@@ -26,6 +19,14 @@ export const WishlistProvider = ({ children }) => {
       console.error("Error fetching wishlist", error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      fetchWishlist();
+    } else {
+      setTimeout(() => setWishlist({ products: [] }), 0);
+    }
+  }, [user]);
 
   const addToWishlist = async (productId) => {
     if (!user) {

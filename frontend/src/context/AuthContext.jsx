@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import { useToast } from './ToastContext';
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const res = await api.get('/auth/me');
           setUser(res.data);
-        } catch (error) {
+        } catch {
           localStorage.removeItem('token');
           setUser(null);
         }

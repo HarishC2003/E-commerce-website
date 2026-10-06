@@ -43,7 +43,6 @@ const Checkout = () => {
     setError(null);
 
     // Form Validation
-    const phoneRegex = /^[0-9]{10}$/; // Example: exactly 10 digits or just digits
     if (!/^\d+$/.test(address.phone)) {
       const msg = "Phone number must contain only numbers.";
       setError(msg);
