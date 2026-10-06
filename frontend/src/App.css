@@ -1,0 +1,23 @@
+/* App.css is intentionally left mostly empty as we use index.css for globals and component-specific css files. */
+.main-content {
+  min-height: 80vh;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.back-btn:hover {
+  color: #000;
+  text-decoration: underline;
+}

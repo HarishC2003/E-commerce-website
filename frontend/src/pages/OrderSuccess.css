@@ -1,0 +1,41 @@
+.order-success-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.success-banner {
+  text-align: center;
+  background: #d4edda;
+  color: #155724;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.order-details-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-items-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-items-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.continue-shopping {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}

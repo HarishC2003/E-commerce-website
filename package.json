@@ -1,0 +1,11 @@
+{
+  "name": "ecommerce-root",
+  "version": "1.0.0",
+  "description": "Root package for deployment",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "build-production": "npm run install-all && npm run build"
+  }
+}
