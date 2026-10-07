@@ -7,6 +7,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -25,16 +26,39 @@ const Home = () => {
   if (loading) return <div>Loading products...</div>;
   if (error) return <div className="error">{error}</div>;
 
+  const filteredProducts = products.filter(product => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    
+    const matchName = product.name?.toLowerCase().includes(query);
+    const matchDesc = product.description?.toLowerCase().includes(query);
+    const matchCat = product.category?.toLowerCase().includes(query);
+    const matchKeyword = product.keywords?.some(kw => kw.toLowerCase().includes(query));
+
+    return matchName || matchDesc || matchCat || matchKeyword;
+  });
+
   return (
     <div className="home">
-      <h1>Latest Products</h1>
-      {products.length === 0 ? (
+      <div className="home-header">
+        <h1>Latest Products</h1>
+        <div className="search-container">
+          <input 
+            type="text" 
+            placeholder="Search by keyword, name, or category..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
+      </div>
+      {filteredProducts.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <h2>No products found.</h2>
+          <h2>No products found matching "{searchQuery}".</h2>
         </div>
       ) : (
         <div className="products-grid">
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <div key={product._id} className="product-card">
               <Link to={`/products/${product._id}`} className="product-image-container">
                 <img src={product.image} alt={product.name} className="product-image" />
