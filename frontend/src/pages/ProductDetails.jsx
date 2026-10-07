@@ -46,7 +46,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="product-details-container" style={{ padding: '2rem' }}>
+    <div className="product-details-container">
       <button className="back-btn" onClick={() => navigate(-1)}>
         ← Back
       </button>
@@ -59,7 +59,9 @@ const ProductDetails = () => {
         <p className="category">{product.category}</p>
         <p className="price">₹{product.price.toLocaleString()}</p>
         <p className="description">{product.description}</p>
-        <p className="stock">Status: {product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
+        <p className={`stock ${product.stock > 0 ? 'stock-in' : 'stock-out'}`}>
+          Status: {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+        </p>
         
         <div className="actions">
           <button 
@@ -72,7 +74,6 @@ const ProductDetails = () => {
           <button 
             disabled={product.stock === 0} 
             className="buy-now-btn"
-            style={{background: '#28a745', color: 'white', padding: '0.75rem 1.5rem', marginRight: '1rem', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold'}}
             onClick={handleBuyNow}
           >
             Buy Now

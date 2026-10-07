@@ -39,15 +39,15 @@ const Cart = () => {
                 <button 
                   onClick={() => updateQuantity(item.product._id, Math.max(1, item.quantity - 1))}
                   disabled={item.quantity <= 1}
-                  style={{ width: '32px', height: '32px', borderRadius: '4px', border: '1px solid #ccc', background: '#f8f9fa', cursor: 'pointer', fontWeight: 'bold' }}
+                  className="qty-btn"
                 >
                   -
                 </button>
-                <span style={{ fontWeight: 'bold', minWidth: '20px', textAlign: 'center' }}>{item.quantity}</span>
+                <span className="qty-value">{item.quantity}</span>
                 <button 
                   onClick={() => updateQuantity(item.product._id, Math.min(item.product.stock, item.quantity + 1))}
                   disabled={item.quantity >= item.product.stock}
-                  style={{ width: '32px', height: '32px', borderRadius: '4px', border: '1px solid #ccc', background: '#f8f9fa', cursor: 'pointer', fontWeight: 'bold' }}
+                  className="qty-btn"
                 >
                   +
                 </button>

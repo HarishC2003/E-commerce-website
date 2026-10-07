@@ -36,7 +36,7 @@ const Home = () => {
         <div className="products-grid">
           {products.map(product => (
             <div key={product._id} className="product-card">
-              <Link to={`/products/${product._id}`}>
+              <Link to={`/products/${product._id}`} className="product-image-container">
                 <img src={product.image} alt={product.name} className="product-image" />
               </Link>
               <div className="product-info">

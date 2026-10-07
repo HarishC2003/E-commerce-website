@@ -26,7 +26,7 @@ const Wishlist = () => {
       <div className="products-grid">
         {wishlist.products.map(product => (
           <div key={product._id} className="product-card">
-            <Link to={`/products/${product._id}`}>
+            <Link to={`/products/${product._id}`} className="product-image-container">
               <img src={product.image} alt={product.name} className="product-image" />
             </Link>
             <div className="product-info">
@@ -37,13 +37,15 @@ const Wishlist = () => {
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                 <button 
                   onClick={() => addToCart(product._id)}
-                  style={{ flex: 1, padding: '0.5rem', background: '#333', color: 'white', border: 'none', cursor: 'pointer' }}
+                  className="btn btn-primary"
+                  style={{ flex: 1 }}
                 >
                   To Cart
                 </button>
                 <button 
                   onClick={() => removeFromWishlist(product._id)}
-                  style={{ flex: 1, padding: '0.5rem', background: '#dc3545', color: 'white', border: 'none', cursor: 'pointer' }}
+                  className="remove-btn"
+                  style={{ flex: 1, textAlign: 'center' }}
                 >
                   Remove
                 </button>

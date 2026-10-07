@@ -1,41 +1,120 @@
 .order-success-page {
-  padding: 2rem;
+  padding: 0;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .success-banner {
   text-align: center;
-  background: #d4edda;
-  color: #155724;
-  padding: 2rem;
-  border-radius: 8px;
+  background: #ecfdf5; /* emerald-50 */
+  color: #065f46; /* emerald-800 */
+  border: 1px solid #a7f3d0; /* emerald-200 */
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
   margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.success-banner h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--success);
+}
+
+.success-banner p {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 .order-details-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: var(--surface);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.order-details-card h3 {
+  font-size: 1.25rem;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-details-card h3:first-child {
+  margin-top: 0;
+}
+
+.order-details-card h4 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.order-details-card p {
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.order-details-card strong {
+  color: var(--text-muted);
+  font-weight: 500;
+  display: inline-block;
+  width: 140px;
 }
 
 .order-items-list {
   list-style-type: none;
   padding: 0;
+  margin: 0 0 2rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .order-items-list li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  background: var(--background);
+}
+
+.order-items-list li:last-child {
+  border-bottom: none;
 }
 
 .continue-shopping {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--primary);
   color: white;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: var(--transition);
+}
+
+.continue-shopping:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 640px) {
+  .order-details-card {
+    padding: 1.5rem;
+  }
+  .order-details-card strong {
+    width: 100px;
+  }
 }
