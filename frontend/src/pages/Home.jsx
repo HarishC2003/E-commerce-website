@@ -45,7 +45,7 @@ const Home = () => {
         <div className="search-container">
           <input 
             type="text" 
-            placeholder="Search by keyword, name, or category..." 
+            placeholder="Search..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input"

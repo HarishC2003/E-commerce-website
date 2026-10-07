@@ -8,7 +8,9 @@ const Wishlist = () => {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  if (!wishlist.products || wishlist.products.length === 0) {
+  const validProducts = wishlist?.products?.filter(p => p) || [];
+
+  if (validProducts.length === 0) {
     return (
       <div className="empty-cart">
         <h2>Your Wishlist is Empty</h2>
@@ -24,7 +26,7 @@ const Wishlist = () => {
       </button>
       <h2>My Wishlist</h2>
       <div className="products-grid">
-        {wishlist.products.map(product => (
+        {validProducts.map(product => (
           <div key={product._id} className="product-card">
             <Link to={`/products/${product._id}`} className="product-image-container">
               <img src={product.image} alt={product.name} className="product-image" />

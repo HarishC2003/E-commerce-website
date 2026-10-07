@@ -8,7 +8,9 @@ const Cart = () => {
   const navigate = useNavigate();
   const [loadingItemId, setLoadingItemId] = useState(null);
 
-  const total = cart.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const validItems = cart?.items?.filter(item => item && item.product) || [];
+  
+  const total = validItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleUpdateQuantity = async (productId, quantity) => {
     setLoadingItemId(productId);
@@ -22,7 +24,7 @@ const Cart = () => {
     setLoadingItemId(null);
   };
 
-  if (cart.items.length === 0) {
+  if (validItems.length === 0) {
     return (
       <div className="empty-cart">
         <h2>Your Cart is Empty</h2>
@@ -38,7 +40,7 @@ const Cart = () => {
       </button>
       <h2>Shopping Cart</h2>
       <div className="cart-items">
-        {cart.items.map((item) => (
+        {validItems.map((item) => (
           <div key={item.product._id} className="cart-item">
             <img src={item.product.image} alt={item.product.name} />
             <div className="item-details">

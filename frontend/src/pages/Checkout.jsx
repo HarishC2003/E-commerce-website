@@ -22,7 +22,8 @@ const Checkout = () => {
   
   // Check if we are doing a "Buy Now" for a single item, or full cart checkout
   const buyNowItem = location.state?.buyNowItem;
-  const itemsToBuy = buyNowItem ? [buyNowItem] : cart.items;
+  const validCartItems = cart?.items?.filter(item => item && item.product) || [];
+  const itemsToBuy = buyNowItem ? [buyNowItem] : validCartItems;
   const totalAmount = itemsToBuy.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
   const [address, setAddress] = useState({
